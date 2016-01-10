@@ -1,35 +1,46 @@
 <html>
 <head>
 
-	<meta charset="UTF-8">
-	<title>Supprimer un restaurant</title>
+    <meta charset="UTF-8">
+    <title>Supprimer un restaurant</title>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script>
-		function deleteOneRest() {
-			var xhr = new XMLHttpRequest();
-			var idRest = document.getElementById('txtIdRes').value 
-			xhr.open('GET', '/delete/'+idRest, true);
-			xhr.onload = function (e){
-				alert(this.response);
-			};
-			xhr.send();
-		}
-	</script>
+    <script>
+        function deleteOneRest() {
+            var xhr = new XMLHttpRequest();
+            var idRest = document.getElementById('txtIdRes').value
+            xhr.open('GET', '/delete/' + idRest, true);
+            xhr.onload = function (e) {
+                alert(this.response);
+            };
+            xhr.send();
+        }
+    </script>
 </head
 
-><header class="row page-header">
-	<hgroup>
-	  <h1><center>Supprimer un restaurant</center></h1>
-	</hgroup>
+>
+<header class="row page-header">
+    <hgroup>
+        <h1>
+            <center>Delete a restaurant</center>
+        </h1>
+    </hgroup>
 </header>
+
 <body>
 <center>
-<form id="myForm">
-  <label for="textfield">Entrer Id restaurant:</label>
-  <input type="text" name="txtIdRes" id="txtIdRes"><br/><br/>
-<input type="button" id="btnDelete" onclick="deleteOneRest()" value="Supprimer"/>
-<p><a href="http://localhost:3000/"> Precedent </a></p>
-</form>
+
+    <form id="myForm">
+
+        <p></p><label for="txtIdRes"></label><input type="text" name="txtIdRes" id="txtIdRes"
+                                                    placeholder="Id Restaurant">
+        <input type="button" id="btnDelete" onclick="deleteOneRest()" value="delete"/></p>
+
+        <p><img src="http://cdn.meme.am/instances/53900310.jpg" alt="connected" style="width:304px;height:228px;"></p>
+
+        <a href="http://localhost:3000/">
+            <button type="button" class="btn btn-primary">Home</button>
+        </a>
+    </form>
 </center>
 </body>
 </html>

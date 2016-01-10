@@ -1,118 +1,125 @@
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Restaurant CRUD NodeJs MongoDB</title>
+    <meta charset="UTF-8">
+    <title>Restaurant CRUD NodeJs MongoDB</title>
 
     <style type="text/css">
-		table.myStyleTab th, table.myStyleTab td {
-		font-size : 11px;
-		font-family : "Myriad Web",Verdana,Helvetica,Arial,sans-serif;
-		background : #efe none; color : #630; }
-  	</style>
+        table.myStyleTab th, table.myStyleTab td {
+            font-size: 11px;
+            font-family: "Myriad Web", Verdana, Helvetica, Arial, sans-serif;
+            background: #efe none;
+            color: #630;
+        }
+    </style>
 
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-	<script>
-		function findMany() {
-			var xhr = new XMLHttpRequest();
-			document.querySelector('#myTable').innerHTML = '';
-			xhr.open('GET', 'findMany', true);
-			xhr.onload = function (e){
-				var restaurants = JSON.parse(this.response);
-				bindingTable(restaurants);
-			};
-			xhr.send();
-		}
+    <script>
+        function findMany() {
+            var xhr = new XMLHttpRequest();
+            document.querySelector('#myTable').innerHTML = '';
+            xhr.open('GET', 'findMany', true);
+            xhr.onload = function (e) {
+                var restaurants = JSON.parse(this.response);
+                bindingTable(restaurants);
+            };
+            xhr.send();
+        }
 
-		function findOne() {
-			var xhr = new XMLHttpRequest();
-			var ids = document.getElementById('id_search').value;
-			var critere = document.getElementById("mySelect").value;
-			var tbodymany = document.querySelector('#myTable');
-			tbodymany.innerHTML = '';
-			xhr.open('GET', 'findOne/'+critere+'/'+ids, true);
-			xhr.onload = function (e){
-			var restaurants = JSON.parse(this.response);
-			//creerTableau(restaurants);
-			bindingTable(restaurants);
-			};
-			xhr.send();
-		}
+        function findOne() {
+            var xhr = new XMLHttpRequest();
+            var ids = document.getElementById('id_search').value;
+            var critere = document.getElementById("mySelect").value;
+            var tbodymany = document.querySelector('#myTable');
+            tbodymany.innerHTML = '';
+            xhr.open('GET', 'findOne/' + critere + '/' + ids, true);
+            xhr.onload = function (e) {
+                var restaurants = JSON.parse(this.response);
+                //creerTableau(restaurants);
+                bindingTable(restaurants);
+            };
+            xhr.send();
+        }
 
-		function bindingTable(list) { 
-			 var cols = TableStruct(list);
-			 for (var i = 0; i < 10; i++) { 
-				var row = $('<tr/>');
-				for (var colIndex = 0; colIndex < cols.length+1; colIndex++) { 
-					var cellValue = list[i][cols[colIndex]];
-					var cellInten = ""	
-					if(colIndex == cols.length){
-					cellValue = "<a href =/deleteOne/"+list[i][cols[6]]+">supprimer</a>";
-					}
-					if (cellValue == null) { 
-						cellValue = ""; 
-					}
-					else if(cols[colIndex] == 'address'){
-						row.append($('<td/>').html('building: ' + list[i]['address']['building'] +
-												  '<br />coord: ' + list[i]['address']['coord'][0] + ',' + list[i]['address']['coord'][1] + 
-												  '<br />street: ' + list[i]['address']['street'] +
-												  '<br />zipcode: ' + list[i]['address']['zipcode']
-												  ));
-						
-					}
-					else if(cellValue instanceof Array){
-						for (var p = 0; p < cellValue.length; p++){
-							cellInten = "Date: " + cellValue[p]['date'] + "<br/> Grade: " + cellValue[p]['grade'] + "<br/>Score: " + cellValue[p]['score'];
-							
-						}
-						row.append($('<td/>').html(cellInten));
-					}
-					else
-						row.append($('<td/>').html(cellValue)); 
-				} 
-				$("#myTable").append(row);
-			} } 
-				
-			function TableStruct(list) {
-				var colset = []; 
-				var headerTr = $('<tr/>'); 
-				for (var i = 0; i < list.length; i++) { 
-					var rows = list[i]; 
-					for (var key in rows) { 
-						if ($.inArray(key, colset) == -1) { 
-							colset.push(key); 
-							headerTr.append($('<th/>').html(key)); 
-						}
-					} 
-				 }
-				 $("#myTable").append(headerTr); 
-				 return colset; 
-			} 
-	</script>
+        function bindingTable(list) {
+            var cols = TableStruct(list);
+            for (var i = 0; i < 10; i++) {
+                var row = $('<tr/>');
+                for (var colIndex = 0; colIndex < cols.length + 1; colIndex++) {
+                    var cellValue = list[i][cols[colIndex]];
+                    var cellInten = ""
+                    if (colIndex == cols.length) {
+                        cellValue = "<a href =/deleteOne/" + list[i][cols[6]] + ">supprimer</a>";
+                    }
+                    if (cellValue == null) {
+                        cellValue = "";
+                    }
+                    else if (cols[colIndex] == 'address') {
+                        row.append($('<td/>').html('building: ' + list[i]['address']['building'] +
+                                '<br />coord: ' + list[i]['address']['coord'][0] + ',' + list[i]['address']['coord'][1] +
+                                '<br />street: ' + list[i]['address']['street'] +
+                                '<br />zipcode: ' + list[i]['address']['zipcode']
+                        ));
+
+                    }
+                    else if (cellValue instanceof Array) {
+                        for (var p = 0; p < cellValue.length; p++) {
+                            cellInten = "Date: " + cellValue[p]['date'] + "<br/> Grade: " + cellValue[p]['grade'] + "<br/>Score: " + cellValue[p]['score'];
+
+                        }
+                        row.append($('<td/>').html(cellInten));
+                    }
+                    else
+                        row.append($('<td/>').html(cellValue));
+                }
+                $("#myTable").append(row);
+            }
+        }
+
+        function TableStruct(list) {
+            var colset = [];
+            var headerTr = $('<tr/>');
+            for (var i = 0; i < list.length; i++) {
+                var rows = list[i];
+                for (var key in rows) {
+                    if ($.inArray(key, colset) == -1) {
+                        colset.push(key);
+                        headerTr.append($('<th/>').html(key));
+                    }
+                }
+            }
+            $("#myTable").append(headerTr);
+            return colset;
+        }
+    </script>
 </head>
 <body>
-    <center><h1>Restaurant List</h1></center>
-    <br/><br/>
-    <hr>
-    <p><center><button onclick="findMany()">Limit The Display</button></center></p>
+
+<center><h1>Restaurant List</h1></center>
+<br/><br/>
+<p>
+<center>
+    <button onclick="findMany()">Limit The Display</button>
+</center>
+<p>
+<center>
+    <p><h4>Research Area</h4>
+<p><img src="http://www.contentverse.com/wp-content/uploads/sharepoint-not-document-management-meme.jpeg" alt="connected" style="width:304px;height:228px;"></p>
     <p>
-    	<hr>
-        <center>
-        <p><h4>Research Area</h4></p>
-        <p>
-         <select id="mySelect">
+        <label for="mySelect"></label>
+        <select id="mySelect">
             <option value="idR">By Id</option>
             <option value="cuisine">By Cuisine</option>
             <option value="borough">By Borough</option>
         </select>
-        <input type="text" name="lname" id="id_search"><button onclick="findOne()">Find</button></p>
-         <p><a href="http://localhost:3000/"> Precedent </a></p>
+        <label for="id_search"></label><input type="text" name="lname" id="id_search">
+        <button onclick="findOne()">Find</button>
     </p>
-    </center>
-    <hr>
-    <center>
-    	<table id="myTable" class="myStyleTab" border="1" cellpadding="5" style="border-collapse: collapse;"> 
-        </table>
-    </center>
+    <p><a href="http://localhost:3000/"><button type="button" class="btn btn-primary">Home</button></a></p>
+</center>
+<center>
+    <table id="myTable" class="myStyleTab" border="1" cellpadding="5" style="border-collapse: collapse;">
+    </table>
+</center>
 </body>
 </html>
