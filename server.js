@@ -1,13 +1,12 @@
+// npm requirement
 var express = require('express');
 var app = express();
-
 var bodyParser = require('body-parser');
-var urlencodedParser = bodyParser.urlencoded({ extended: true })
+var urlencodedParser = bodyParser.urlencoded({extended: true});
+
 app.use(bodyParser.json());
 app.use(urlencodedParser);
 
-/* Ce que j'ai ajouté pour testé mongodb */
-// Retrieve
 var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectID;
 
@@ -16,11 +15,11 @@ var url = 'mongodb://localhost:27017/test';
 var htmlDir="/static";
 
 // Connect to the db
-var myCollection;
+var bucket;
 var db = MongoClient.connect(url, function(err, db) {
   if(!err) {
-    console.log("We are connected to test DB");
-		myCollection = db.collection('restaurants');
+    console.log("Connected to Mongo");
+		bucket = db.collection('restaurants');
   } else {
 		  console.error("Error! Exiting... Must start MongoDB first");
       process.exit(1); 
@@ -29,33 +28,35 @@ var db = MongoClient.connect(url, function(err, db) {
 
 /* GET home page. */
 app.get('/', function (req, res) {
-	var html = '<p><center><h2>Accueil Restaurant</h2></center></p><br /><br /><br /><br /> ' +
-			'<p><a href="/connect">Test Connection</a></p>' +
-			'<p><a href="/read">Find All</a></p>' +
-			'<p><a href="/create">Inserer un restaurant</a></p>' +
-			'<p><a href="/delete">Supprimer un restaurant</a></p>';
+	var html = '<p><center><h2>CRUD NodeJS Express MongoDB</h2></center></p>' +
+			'<br /><br /><br /><br /> ' +
+
+			'<p><a href="/connect">Connected to Mongo</a></p>' +
+			'<p><a href="/find">Find document</a></p>' +
+			'<p><a href="/create">Insert document</a></p>' +
+			'<p><a href="/delete">Delete document</a></p>';
 	res.send(html);
 });
 
 /* GET home page. */
 app.get('/connect', function (req, res) {
-	var html = '<center><h2>We are connected to test DB</h2><br/><br/><br/><br/><br/><a href="http://localhost:3000/"> Precedent </a></center>';
+	var html = '<center><h2>Connected : Mongo version 2.6.10 </h2><br/><br/><br/><br/><br/><a href="http://localhost:3000/"> Home </a></center>';
 	if (!db) {
 		res.send(html);
 	} else {
-		res.send("Error! Exiting... Must start MongoDB first");
+		res.send("Ooops ! You are not connected to mongo server");
 	}
 });
 
 /* GET everything */
-app.get('/read', function (req, res, next) {
+app.get('/find', function (req, res, next) {
 			res.sendfile(__dirname + '/'+htmlDir+'/findDocument.html');
 });
 
 app.get('/findMany', function (req, res, next) {
     // get all entities from db
-    //var html = '<p>read everything from db</p>';
-		myCollection.find({}).toArray(function (err, result) {
+    //var html = '<p>find everything from db</p>';
+		bucket.find({}).toArray(function (err, result) {
 			if (err) {
 				console.log(err);
 			} else if (result.length) {
@@ -71,7 +72,7 @@ app.get('/findMany', function (req, res, next) {
 /* GET something specific. */
 app.get('/findOne/:critere/:id', function (req, res, next) {
 	if(req.params.critere === 'idR'){
-		  myCollection.find({"restaurant_id":req.params.id}).toArray(function (err, result) {
+		  bucket.find({"restaurant_id":req.params.id}).toArray(function (err, result) {
 		  if (err) {
 			  console.log(err);
 		  } else if (result.length) {
@@ -81,7 +82,7 @@ app.get('/findOne/:critere/:id', function (req, res, next) {
 		  }
 	  });
 	  } else if (req.params.critere === 'cuisine'){
-		  myCollection.find({"cuisine":req.params.id}).toArray(function (err, result) {
+		  bucket.find({"cuisine":req.params.id}).toArray(function (err, result) {
 		  if (err) {
 			  console.log(err);
 		  } else if (result.length) {
@@ -91,7 +92,7 @@ app.get('/findOne/:critere/:id', function (req, res, next) {
 		  }
 	  });
 	  } else if (req.params.critere === 'borough'){
-		  myCollection.find({"borough":req.params.id}).toArray(function (err, result) {
+		  bucket.find({"borough":req.params.id}).toArray(function (err, result) {
 		  if (err) {
 			  console.log(err);
 		  } else if (result.length) {
@@ -111,7 +112,7 @@ app.get('/create', function (req, res, next) {
 
 /* POST to parse form and create something specific. */
 app.get('/insert/:id&:building&:coord1&:coord2&:street&:zipcode&:borough&:cuisine&:date&:grade&:score&:name', function (req, res, next) {
-    myCollection.insertOne({
+    bucket.insertOne({
 		  "address" : {
 			 "street" : req.params.street,
 			 "zipcode" : req.params.zipcode,
@@ -143,9 +144,9 @@ app.get('/delete', function (req, res, next) {
 	res.sendfile(__dirname + '/'+htmlDir+'/delete.html');
 });
 
-/* DELETE */
+// delete
 app.get('/delete/:id', function (req, res, next) {
-	myCollection.remove({'restaurant_id': req.params.id}, 1, function (err, result) {
+	bucket.remove({'restaurant_id': req.params.id}, 1, function (err, result) {
 		if (err) {
 			res.send(err);
 		} else {
@@ -155,12 +156,12 @@ app.get('/delete/:id', function (req, res, next) {
 });
 
 app.get('/deleteOne/:id', urlencodedParser, function (req, res, next) {
-    myCollection.remove({"restaurant_id":req.params.id});
-	res.redirect('http://localhost:3000/read')
+    bucket.remove({"restaurant_id":req.params.id});
+	res.redirect('http://localhost:3000/find')
     
 });
 
-/* UPDATE something specific from the URL. */
+// TODO Complete update document
 app.get('/update/:id', function (req, res, next) {
     var html = '<form method="post" action="/updated">' +
                '<div>' + req.params.id +
