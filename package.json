@@ -1,0 +1,32 @@
+{
+  "name": "ServerSide Application",
+  "version": "0.0.1",
+  "description": "Voir README.md",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/benathmane/ServerSide-App.git"
+  },
+  "keywords": [
+    "MongoDB",
+    "NodeJS"
+  ],
+	  "contributors": [
+    {
+      "name": "BENATHMANE Ayoub"
+    },
+    {
+      "name": "BOUGHZAF Nabil"
+    }
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "express": "~4.13.3",
+    "body-parser": "~1.14.2",
+    "mongodb": "~2.1.3"
+  },
+  "homepage": ""
+}

@@ -1,0 +1,112 @@
+<html>
+<head>
+
+	<meta charset="UTF-8">
+	<title>Web Project</title>
+    <style type="text/css">
+		table.myStyleTab th, table.myStyleTab td {
+		font-size : 11px;
+		font-family : "Myriad Web",Verdana,Helvetica,Arial,sans-serif;
+		background : #efe none; color : #630; }
+  	</style>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script>
+		function insertOneRest() {
+			var xhr = new XMLHttpRequest();
+			var id = document.getElementById('id').value ;
+			var builing = document.getElementById('builing').value; 
+			var coord1 = document.getElementById('coord1').value;
+			var coord2 = document.getElementById('coord2').value;
+			var street = document.getElementById('street').value;
+			var zipcode = document.getElementById('zipcode').value; 
+			var borough = document.getElementById('borough').value;
+			var cuisine = document.getElementById('cuisine').value;
+			var date = document.getElementById('date').value;
+			var grade = document.getElementById('grade').value; 
+			var score = document.getElementById('score').value;
+			var name = document.getElementById('name').value;
+			if(id == "" || builing == "" || coord1 == "" || coord2 == "" || street == "" || zipcode == "" || borough == "" || cuisine == "" || date == "" || grade == "" || score == "" || name == ""){
+				alert("Veuillez SVP remplir tous les champs");
+			}else{
+				xhr.open('GET', '/insert/' + id + '&' + builing + '&' + coord1 + '&' + coord2 + '&' + 
+											street + '&' + zipcode + '&' + borough + '&' + cuisine + '&' + 
+											date + '&' + grade + '&' + score + '&' + name, true);
+				xhr.onload = function (e){
+					alert(this.response);
+				};
+				xhr.send();
+			}
+		}
+	</script>
+</head
+
+><header class="row page-header">
+	<hgroup>
+	  <h1><center>Inserer un restaurant</center></h1>
+	</hgroup>
+</header>
+<body id="mybody">
+<center>
+<form id="myForm" method="get">
+  <table width="200" border="1" class="myStyleTab">
+  <tbody>
+    <tr>
+      <td colspan="2">Id</td>
+      <td><input type="text" name="id" id="id"></td>
+</tr>
+    <tr>
+      <td rowspan="4">Address </td>
+      <td>building </td>
+      <td><input type="text" name="builing" id="builing"></td>
+    </tr>
+    <tr>
+      <td>coord </td>
+      <td><center><input type="text" name="coord1" id="coord1" size="8px"> , <input type="text" name="coord2" id="coord2" size="8px"></center></td>
+</tr>
+    <tr>
+      <td>street </td>
+      <td><input type="text" name="street" id="street"></td>
+</tr>
+    <tr>
+      <td>zipcode </td>
+      <td><input type="text" name="zipcode" id="zipcode"></td>
+</tr>
+    <tr>
+      <td colspan="2">borough </td>
+      <td><input type="text" name="borough" id="borough"></td>
+      
+    </tr>
+    <tr>
+      <td colspan="2">cuisine </td>
+      <td><input type="text" name="cuisine" id="cuisine"></td>
+      
+    </tr>
+    <tr>
+      <td rowspan="3">grades </td>
+      <td>Date </td>
+      <td><input type="text" name="date" id="date"></td>
+    </tr>
+    <tr>
+      <td>Grade </td>
+      <td><input type="text" name="grade" id="grade"></td>
+</tr>
+    <tr>
+      <td>Score </td>
+      <td><input type="text" name="score" id="score"></td>
+</tr>
+    <tr>
+      <td colspan="2">name </td>
+      <td><input type="text" name="name" id="name"></td>
+    </tr>
+  </tbody>
+</table>
+<br />
+<br />
+<br />
+
+<input type="button" value="Enregistrer" onclick="insertOneRest()" />
+<a href="http://localhost:3000/"> Annuler </a>
+</form>
+</center>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<html>
+<head>
+
+	<meta charset="UTF-8">
+	<title>Supprimer un restaurant</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script>
+		function deleteOneRest() {
+			var xhr = new XMLHttpRequest();
+			var idRest = document.getElementById('txtIdRes').value 
+			xhr.open('GET', '/delete/'+idRest, true);
+			xhr.onload = function (e){
+				alert(this.response);
+			};
+			xhr.send();
+		}
+	</script>
+</head
+
+><header class="row page-header">
+	<hgroup>
+	  <h1><center>Supprimer un restaurant</center></h1>
+	</hgroup>
+</header>
+<body>
+<center>
+<form id="myForm">
+  <label for="textfield">Entrer Id restaurant:</label>
+  <input type="text" name="txtIdRes" id="txtIdRes"><br/><br/>
+<input type="button" id="btnDelete" onclick="deleteOneRest()" value="Supprimer"/>
+<p><a href="http://localhost:3000/"> Precedent </a></p>
+</form>
+</center>
+</body>
+</html>
