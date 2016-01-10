@@ -31,11 +31,12 @@ app.get('/', function (req, res) {
     var html = '<p><center><h2>CRUD NodeJS Express MongoDB</h2></center></p>' +
         '<br /><br /><br /><br /> ' +
         '<center>' +
-        '<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-off" aria-hidden="true"></span><p><a href="/connect">Connected to Mongo</a></p></button>' +
-        '<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-send" aria-hidden="true"></span><p><a href="/find">Find document</a></p></button>' +
-        '<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-send" aria-hidden="true"></span><p><a href="/create">Insert document</a></p></button>' +
-        '<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-send" aria-hidden="true"></span><p><a href="/delete">Delete document</a></p></button>' +
-        '</center>';
+        '<a href="/connect"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>Connected to Mongo</button></a>' +
+        '<a href="/find"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>Find document</button></a>' +
+        '<a href="/create"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>Insert document</button></a>' +
+        '<a href="/delete"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>Delete document</button></a>' +
+        '<p><img src="http://cdn.meme.am/instances/59664439.jpg" alt="connected" style="width:304px;height:228px;"></p>';
+    '</center>';
     res.send(html);
 });
 
@@ -43,7 +44,8 @@ app.get('/', function (req, res) {
 app.get('/connect', function (req, res) {
     var html = '<center><h2>Connected : Mongo version 2.6.10 </h2>' +
         '<br/><br/><br/><br/><br/>' +
-        '<button type="button" class="btn btn-default"><span class="glyphicon glyphicon-off" aria-hidden="true"></span><p><a href="http://0.0.0.0:3000/">Home</a></p></button></center>';
+        '<p><img src="http://www.mememaker.net/static/images/memes/4062664.jpg" alt="connected" style="width:304px;height:228px;"></p>' +
+        '<a href="http://0.0.0.0:3000/"><button type="button" class="btn btn-primary">Home</button></a></center>';
 
     if (!db) {
         res.send(html);
