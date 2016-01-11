@@ -34,6 +34,30 @@
         h1 {
             font-family: Helvetica, Geneva, Arial,
             SunSans-Regular, sans-serif }
+        .myButton {
+            -moz-box-shadow: 1px 2px 0px 2px #9fb4f2;
+            -webkit-box-shadow: 1px 2px 0px 2px #9fb4f2;
+            box-shadow: 1px 2px 0px 2px #9fb4f2;
+            background:-webkit-gradient(linear, left top, left bottom, color-stop(0.05, #7892c2), color-stop(1, #476e9e));
+            background:-moz-linear-gradient(top, #7892c2 5%, #476e9e 100%);
+            background:-webkit-linear-gradient(top, #7892c2 5%, #476e9e 100%);
+            background:-o-linear-gradient(top, #7892c2 5%, #476e9e 100%);
+            background:-ms-linear-gradient(top, #7892c2 5%, #476e9e 100%);
+            background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+            filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#7892c2', endColorstr='#476e9e',GradientType=0);
+            background-color:#7892c2;
+            -moz-border-radius:42px;
+            -webkit-border-radius:42px;
+            border-radius:42px;
+            border:7px solid #4e6096;
+            display:inline-block;
+            cursor:pointer;
+            color:#ffffff;
+            font-family:Arial;
+            font-size:18px;
+            padding:7px 23px;
+            text-decoration:none;
+            text-shadow:1px 0px 21px #283966;
     </style>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -123,7 +147,7 @@
 <br/><br/>
 <p>
 <center>
-    <button onclick="findMany()">Limit The Display</button>
+    <button onclick="findMany()" class="myButton">Limit The Display</button>
 </center>
 <p>
 <center>
@@ -131,15 +155,15 @@
 <p><img src="http://www.contentverse.com/wp-content/uploads/sharepoint-not-document-management-meme.jpeg" alt="connected" style="width:304px;height:228px;"></p>
     <p>
         <label for="mySelect"></label>
-        <select id="mySelect">
+        <select id="mySelect" class="myButton">
             <option value="idR">By Id</option>
             <option value="cuisine">By Cuisine</option>
             <option value="borough">By Borough</option>
         </select>
         <label for="id_search"></label><input type="text" name="lname" id="id_search">
-        <button onclick="findOne()">Find</button>
+        <button onclick="findOne()" class="myButton">Find</button>
     </p>
-    <p><a href="http://localhost:3000/"><button type="button" class="btn btn-primary">Home</button></a></p>
+    <p><a href="http://localhost:3000/"><button type="button" class="myButton">Home</button></a></p>
 <center>
     <table id="myTable" class="myStyleTab" border="1" cellpadding="5" style="border-collapse: collapse;">
     </table>
