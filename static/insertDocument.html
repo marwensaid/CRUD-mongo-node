@@ -4,11 +4,27 @@
     <meta charset="UTF-8">
     <title>CRUD MONGO</title>
     <style type="text/css">
-        table.myStyleTab th, table.myStyleTab td {
-            font-size: 11px;
-            font-family: "Myriad Web", Verdana, Helvetica, Arial, sans-serif;
-            background: #efe none;
-            color: #630;
+        table.myStyleTab {
+            font-family: verdana,arial,sans-serif;
+            font-size:11px;
+            color:#333333;
+            border-width: 1px;
+            border-color: #666666;
+            border-collapse: collapse;
+        }
+        table.myStyleTab th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #dedede;
+        }
+        table.myStyleTab td {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #ffffff;
         }
     </style>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -57,10 +73,10 @@
     <p><img src="http://cdn.meme.am/instances/500x/56957557.jpg" alt="connected" style="width:304px;height:228px;"></p>
 
     <form id="myForm" method="get">
-        <table width="200" border="1" class="myStyleTab">
+        <table width="500" border="1" class="myStyleTab">
             <tbody>
             <tr>
-                <td colspan="2">Id</td>
+                <td colspan="2">Restaurant_id</td>
                 <td><input type="text" name="id" id="id"></td>
             </tr>
             <tr>

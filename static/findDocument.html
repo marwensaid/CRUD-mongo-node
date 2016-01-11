@@ -1,14 +1,30 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Restaurant CRUD NodeJs MongoDB</title>
+    <title>CRUD MONGO</title>
 
     <style type="text/css">
-        table.myStyleTab th, table.myStyleTab td {
-            font-size: 11px;
-            font-family: "Myriad Web", Verdana, Helvetica, Arial, sans-serif;
-            background: #efe none;
-            color: #630;
+        table.myStyleTab {
+            font-family: verdana,arial,sans-serif;
+            font-size:11px;
+            color:#333333;
+            border-width: 1px;
+            border-color: #666666;
+            border-collapse: collapse;
+        }
+        table.myStyleTab th {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #dedede;
+        }
+        table.myStyleTab td {
+            border-width: 1px;
+            padding: 8px;
+            border-style: solid;
+            border-color: #666666;
+            background-color: #ffffff;
         }
     </style>
 
@@ -47,7 +63,7 @@
                 var row = $('<tr/>');
                 for (var colIndex = 0; colIndex < cols.length + 1; colIndex++) {
                     var cellValue = list[i][cols[colIndex]];
-                    var cellInten = ""
+                    var cellInten = "";
                     if (colIndex == cols.length) {
                         cellValue = "<a href =/deleteOne/" + list[i][cols[6]] + ">supprimer</a>";
                     }
