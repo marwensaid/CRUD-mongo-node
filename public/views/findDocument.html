@@ -65,7 +65,7 @@
                     var cellValue = list[i][cols[colIndex]];
                     var cellInten = "";
                     if (colIndex == cols.length) {
-                        cellValue = "<a href =/deleteOne/" + list[i][cols[6]] + ">supprimer</a>";
+                        cellValue = "<a href =/deleteOne/" + list[i][cols[6]] + ">Delete</a>";
                     }
                     if (cellValue == null) {
                         cellValue = "";
@@ -132,7 +132,6 @@
         <button onclick="findOne()">Find</button>
     </p>
     <p><a href="http://localhost:3000/"><button type="button" class="btn btn-primary">Home</button></a></p>
-</center>
 <center>
     <table id="myTable" class="myStyleTab" border="1" cellpadding="5" style="border-collapse: collapse;">
     </table>

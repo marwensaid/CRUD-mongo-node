@@ -11,7 +11,7 @@ var MongoClient = require('mongodb').MongoClient;
 
 var url = 'mongodb://localhost:27017/test';
 
-var htmlDir = "/static";
+var htmlDir = "/public/views";
 
 // Connect to the db
 var bucket;
@@ -31,10 +31,10 @@ app.get('/', function (req, res) {
     var html = '<p><center><h2>CRUD NodeJS Express MongoDB</h2></center></p>' +
         '<br /><br /><br /><br /> ' +
         '<center>' +
-        '<a href="/connect"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>Connected to Mongo</button></a>' +
-        '<a href="/find"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>Find document</button></a>' +
-        '<a href="/create"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>Insert document</button></a>' +
-        '<a href="/delete"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>Delete document</button></a>' +
+        '<a href="/connect"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>Connected to Mongo</button></a>' +
+        '<a href="/find"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>Find document</button></a>' +
+        '<a href="/create"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>Insert document</button></a>' +
+        '<a href="/delete"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>Delete document</button></a>' +
         '<p><img src="http://cdn.meme.am/instances/59664439.jpg" alt="connected" style="width:304px;height:228px;"></p>';
     '</center>';
     res.send(html);
