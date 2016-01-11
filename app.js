@@ -28,7 +28,8 @@ var db = MongoClient.connect(url, function (err, db) {
 /* GET home page. */
 app.get('/', function (req, res) {
 
-    var html = '<p><center><h2>CRUD NodeJS Express MongoDB</h2></center></p>' +
+    var html ='<style>body {font-family: Georgia, "Times New Roman",Times, serif;color: purple;background-color: #DACFCF }h1 {font-family: Helvetica, Geneva, Arial,SunSans-Regular, sans-serif }</style>'+
+        '<p><center><h2>CRUD NodeJS Express MongoDB</h2></center></p>' +
         '<br /><br /><br /><br /> ' +
         '<center>' +
         '<a href="/connect"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-off" aria-hidden="true"></span>Connected to Mongo</button></a>' +
@@ -42,7 +43,8 @@ app.get('/', function (req, res) {
 
 // home page
 app.get('/connect', function (req, res) {
-    var html = '<center><h2>Connected : Mongo version 2.6.10 </h2>' +
+    var html = '<style>body {font-family: Georgia, "Times New Roman",Times, serif;color: purple;background-color: #DACFCF }h1 {font-family: Helvetica, Geneva, Arial,SunSans-Regular, sans-serif }</style>'+
+        '<center><h2>Connected : Mongo version 2.6.10 </h2>' +
         '<br/><br/><br/><br/><br/>' +
         '<p><img src="http://www.mememaker.net/static/images/memes/4062664.jpg" alt="connected" style="width:304px;height:228px;"></p>' +
         '<a href="http://0.0.0.0:3000/"><button type="button" class="btn btn-primary">Home</button></a></center>';
