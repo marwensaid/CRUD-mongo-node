@@ -108,13 +108,10 @@ app.get('/findOne/:critere/:id', function (req, res) {
     }
 });
 
-/* A browser address bar can only issue GET requests.
- GET form to fill in with new object details. */
 app.get('/create', function (req, res) {
     res.sendfile(__dirname + '/' + htmlDir + '/insertDocument.html');
 });
 
-/* POST to parse form and create something specific. */
 app.get('/insert/:id&:building&:coord1&:coord2&:street&:zipcode&:borough&:cuisine&:date&:grade&:score&:name', function (req, res) {
     bucket.insertOne({
         "address": {
@@ -167,7 +164,7 @@ app.get('/deleteOne/:id', urlencodedParser, function (req, res, next) {
 
 // TODO Complete update document
 app.get('/update/:id', function (req, res) {
-    var html = '<form method="post" action="/updated">' +
+    var html = '<form method="post" action="/updatedDocument">' +
         '<div>' + req.params.id +
         ': <input type="text" name="something" placeholder="something"></div>' +
         '<input type="hidden" name="id" value="' + req.params.id + '">' +
@@ -177,7 +174,6 @@ app.get('/update/:id', function (req, res) {
 });
 
 
-/* POST to parse form and update something specific. */
 app.post('/updated', urlencodedParser, function (req, res) {
     var html = '<p>edited and updated ' + req.body.id + ' : ' + req.body.something + ' in db</p>';
     res.send(html);
